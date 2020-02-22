@@ -1,0 +1,38 @@
+951_Rearrange
+
+Given an array required to be rearranged,
+which means all the numbers on the even-numbered bits are less than those on the odd-numbered bits. 
+At the same time, the even-numbered bits are sorted in ascending order, and the odd-numbered bits are also sorted in ascending order.
+
+
+class Solution {
+public:
+    /**
+     * @param nums: the num arrays 
+     * @return: the num arrays after rearranging*/
+     
+    vector<int> rearrange(vector<int> &nums) {
+        int odd = 1;
+        int even = 0;
+        vector<int> newnums = nums;
+        sort(newnums.begin(), newnums.end());
+        int len = nums.size();
+        int i = 0;
+        
+        while(even < len)
+        {
+            nums[even] = newnums[i];
+            i++;
+            even += 2;
+        }
+        while(odd < len)
+        {
+            nums[odd] = newnums[i];
+            i++;
+            odd += 2;
+        }
+        
+        return nums;
+        // Write your code here 
+    }
+};

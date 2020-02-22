@@ -1,0 +1,38 @@
+Lintcode 
+1471.Set Operation
+Description
+
+Given two sets A, B, output the size of the union, intersection, and difference of A and B
+
+
+class Solution {
+public:
+    /**
+     * @param A: The set A
+     * @param B: The set B
+     * @return: Return the size of three sets
+     */
+    vector<int> getAnswer(vector<int> &A, vector<int> &B) {
+        
+        int Mx = 1e6 + 10;
+        bool vis[Mx] = {0};
+        
+        int n = A.size();
+        for (int i = 0; i < n; i++) {
+            vis[A[i]] = 1;
+        }
+        int m = B.size(), cnt = 0;
+        for (int i = 0; i < m; i++) {
+            if (vis[B[i]]) cnt++;
+        }
+        vector<int> Ans;
+        Ans.push_back(n + m - cnt);
+        Ans.push_back(cnt);
+        Ans.push_back(n - cnt);
+        return Ans;
+        
+        
+        
+        // Write your code here
+    }
+};

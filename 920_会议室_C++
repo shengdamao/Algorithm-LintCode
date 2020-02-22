@@ -1,0 +1,41 @@
+Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), 
+determine if a person could attend all meetings.
+
+/**
+ * Definition of Interval:
+ * classs Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this->start = start;
+ *         this->end = end;
+ *     }
+ * }
+ */
+
+class Solution {
+public:
+    /**
+     * @param intervals: an array of meeting time intervals
+     * @return: if a person could attend all meetings
+     */
+    static bool compare (Interval i, Interval j)
+    {
+        return (i.start < j.start );
+    }
+     
+    bool canAttendMeetings(vector<Interval> &intervals) {
+        if (intervals.size() == 0)
+        return true;
+        sort(intervals.begin(), intervals.end(), compare);
+        int len = intervals.size();
+        int ending = intervals[0].end;
+        for (int i = 1; i < len; i++)
+        {
+            if (ending > intervals[i].start)
+            return false;
+            ending = intervals[i].end;
+        
+        }
+        return true;
+    }
+};
